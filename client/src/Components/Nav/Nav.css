@@ -1,0 +1,9 @@
+.jumbotron {
+  border: 2px solid black;
+}
+
+.title {
+  display: inline;
+  padding-left: 15px;
+  padding-right: 15px;
+}
