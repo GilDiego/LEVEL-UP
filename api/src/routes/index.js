@@ -5,7 +5,7 @@ const games = require('./videogames.js');
 const gamesParams = require('./params.js');
 const genres = require('./genres.js');
 const postGame = require('./postGame.js');
-
+const gamesDB = require('./gamesDB')
 
 const router = Router();
 
@@ -15,6 +15,7 @@ router.use('/games', games)
 router.use('/games/:id', gamesParams)
 router.use('/genres', genres)
 router.use('/new', postGame)
+router.use('/gamesDB', gamesDB)
 
 
 module.exports = router;

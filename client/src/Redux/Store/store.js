@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, compose, combineReducers } from "redux"
+// import { createStore, applyMiddleware, compose, combineReducers } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
 import gamesReducer from '../Reducers/reducer.js'
 // import buttonsReducer from "../reducers/buttonsReducer.js";
 import thunk from "redux-thunk";

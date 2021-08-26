@@ -3,7 +3,7 @@ import './Buttons.css'
 
 export default function Buttons() {
     return (
-        <div>
+        <div className='buttons'>
             Estas en buttons
         </div>
     )
