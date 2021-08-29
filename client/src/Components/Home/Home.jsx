@@ -7,13 +7,14 @@ import { fetchDB, getGames } from '../../Redux/Actions/actions.js';
 
 
 export default function Home() {
+
     const dispatch = useDispatch()
-    const gamesRedux = useSelector(state => state.gamesLoaded)
-    const gamesDB = useSelector(state => state.gamesLoaded)
+    const gamesRedux = useSelector(state => state.gamesReducer.gamesLoaded)
+    const gamesDB = useSelector(state => state.gamesReducer.gamesLoaded)
 
 // On component mount, fetches data from API and DB
     useEffect(() => {
-        if (!gamesRedux.length) dispatch(getGames())
+        if (!gamesRedux.length) dispatch(getGames(1))
         if (!gamesDB.length) dispatch(fetchDB())
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])

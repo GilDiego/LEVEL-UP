@@ -1,11 +1,12 @@
 export const GET_GAMES = 'GET_GAMES'
 export const FETCH_DB = 'FETCH_DB'
 export const SEARCH_GAMES = 'SEARCH_GAMES'
+export const SEARCH_GAME_ID = 'SEARCH_GAME_ID'
 
 
-export function getGames() {
+export function getGames(page) {
     return function (dispatch) {
-        return fetch('http://localhost:3001/games')
+        return fetch(`http://localhost:3001/games?page=${page}`)
             .then(data => data.json())
             .then(json => {
                 dispatch({ type: "GET_GAMES", payload: json })
@@ -32,6 +33,16 @@ export function searchGames(name) {
             .then(data => data.json())
             .then(json => {
                 dispatch({ type: "SEARCH_GAMES", payload: json })
+            })
+    }
+}
+
+export function searchId(id) {
+    return function (dispatch) {
+        return fetch('http://localhost:3001/games/' + id)
+            .then(data => data.json())
+            .then(json => {
+                dispatch({ type: "SEARCH_GAME_ID", payload: json })
             })
     }
 }

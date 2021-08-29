@@ -1,9 +1,10 @@
-import { GET_GAMES, FETCH_DB, SEARCH_GAMES } from "../Actions/actions.js";
+import { GET_GAMES, FETCH_DB, SEARCH_GAMES, SEARCH_GAME_ID } from "../Actions/actions.js";
 
 const initialState = {
     gamesLoaded: [],
     gamesDB: [],
-    gamesSeached: []
+    gamesSeached: [],
+    gameObject: {}
 }
 
 function gamesReducer(state = initialState, action) {
@@ -22,6 +23,11 @@ function gamesReducer(state = initialState, action) {
             return {
                 ...state,
                 gamesSeached: action.payload
+            }
+        case SEARCH_GAME_ID:
+            return {
+                ...state,
+                gameObject: action.payload
             }
         default:
             return state
