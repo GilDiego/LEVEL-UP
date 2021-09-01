@@ -8,13 +8,15 @@ export default function Nav() {
     return (
         
         <div className='jumbotron'>
-            <Link to='/home'>
-            <p className='title'> Videogames</p>
-            </Link>
-
-            <Link to='/new'>
-            <p className='title'> Create</p>
-            </Link>
+            <div className='nav-text'>
+                <Link to='/home'>
+                <p className='title'> LEVEL UP</p>
+                </Link>
+                <Link to='/new'>
+                <p className='title2'> Create</p>
+                </Link>
+            </div>
+            
 
             <span className='searchbar'><Searchbar /></span>
         </div>

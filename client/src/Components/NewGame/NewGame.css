@@ -1,0 +1,47 @@
+.creation-main {
+  color: white;
+  border-radius: 5px;
+  background-color: rgba(71, 71, 71, 0.555);
+  border: 2px solid rgba(136, 136, 136, 0.712);
+  text-shadow: 1px 1px 2px black;
+  height: 500px;
+  width: 730px;
+  margin: auto;
+  margin-top: 25px;
+  padding: 10px;
+}
+.create-btn {
+  margin-top: 35px;
+}
+.success-main {
+  color: white;
+  border-radius: 5px;
+  background-color: rgba(71, 71, 71, 0.555);
+  border: 2px solid rgba(136, 136, 136, 0.712);
+  text-shadow: 1px 1px 2px black;
+  height: 500px;
+  width: 730px;
+  margin: auto;
+  margin-top: 25px;
+  padding: 10px;
+}
+.success-gif {
+  width: 300px;
+  margin: auto;
+}
+.home-button {
+  position: absolute;
+  bottom: 300px;
+  right: 860px;
+  color: white;
+  font-weight: 700;
+  background-color: rgb(68, 44, 42);
+  width: 130px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+}
+.home-button:hover {
+  background-color: rgb(100, 65, 62);
+  cursor: pointer;
+}

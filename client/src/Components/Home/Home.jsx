@@ -1,29 +1,15 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
 import './Home.css'
 import Buttons from '../Buttons/Buttons.jsx'
 import Cards from '../Cards/Cards.jsx'
-import { fetchDB, getGames } from '../../Redux/Actions/actions.js';
 
 
 export default function Home() {
 
-    const dispatch = useDispatch()
-    const gamesRedux = useSelector(state => state.gamesReducer.gamesLoaded)
-    const gamesDB = useSelector(state => state.gamesReducer.gamesLoaded)
-
-// On component mount, fetches data from API and DB
-    useEffect(() => {
-        if (!gamesRedux.length) dispatch(getGames(1))
-        if (!gamesDB.length) dispatch(fetchDB())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
-
-
     return (
-        <>
+        <div className='main-container'>
             <Buttons />
             <Cards />
-        </>
+        </div>
     )
 }

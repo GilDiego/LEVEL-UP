@@ -30,24 +30,23 @@ export default function Buttons() {
 
     return (
         <div className='buttons'>
+            
+            <span>Results from: &nbsp;</span>
+                <input type="checkbox" defaultChecked={true} onChange={e => setAPI(!API)}/>
+                <label>API</label>
+                <input type="checkbox" defaultChecked={true} onChange={e => setDB(!DB)}/>
+                <label>DB</label>
 
-            <span>Results from: </span>
-            <input type="checkbox" defaultChecked={true} onChange={e => setAPI(!API)}/>
-                    <label>API</label>
-
-                    <input type="checkbox" defaultChecked={true} onChange={e => setDB(!DB)}/>
-                    <label>DB</label>
-
-            <span>  Sort by: </span>
-            <label>Order:</label>
-                    <select name="Order" id="Order" onChange={e => setOrder(e.target.value)}>
+            {/* <span>&nbsp;&nbsp;&nbsp;&nbsp;Sort by:&nbsp;</span> */}
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order:&nbsp;</label>
+                    <select className='order' name="Order" id="Order" onChange={e => setOrder(e.target.value)}>
                         <option value="Default">Default</option>
                         <option value="asc">A - Z</option>
                         <option value="desc">Z - A</option>
                     </select>
 
 
-                    <label>Rating:</label>
+                    <label>&nbsp;&nbsp;&nbsp;&nbsp;Rating:&nbsp;</label>
                     <select name="Weight" id="Weight" onChange={e => setRating(e.target.value)}>
                         <option value="Default">Default</option>
                         <option value="Highest-first">Highest first</option>

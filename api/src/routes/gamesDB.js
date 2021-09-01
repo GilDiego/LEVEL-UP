@@ -1,19 +1,23 @@
 const { Router } = require('express');
-const { Videogame } = require('../db.js');
+const { Videogame, Genre } = require('../db.js');
 
 const router = Router();
 
 
+router.get('/', async (req, res) => {
+    let videogamesDb = await Videogame.findAll({
+        include: Genre
+    });
+    //Parses object
+    videogamesDb = JSON.stringify(videogamesDb);
+    videogamesDb = JSON.parse(videogamesDb);
+    //Converts genres
+    videogamesDb = videogamesDb.reduce((acc, el) => acc.concat({
+        ...el,
+        genres: el.genres.map(g => g.name)
+    }), [])
 
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-router.get('/', (req, res) => {
-
-    Videogame.findAll({}).then(data => res.json(data))
-
-
+    res.json(videogamesDb)
 })
-
 
 module.exports = router;

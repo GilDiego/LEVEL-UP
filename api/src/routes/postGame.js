@@ -1,26 +1,30 @@
 const { Router } = require('express');
-const fetch = require("node-fetch");
-require('dotenv').config();
-const { Videogame } = require('../db.js');
-
-
 const router = Router();
+const { Videogame, Genre } = require('../db');
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-router.post('/', (req, res)=>{
-    const { name, description, release, rating, genres, platforms } = req.body
-    Videogame.create({
+
+router.post('/', async (req, res) => {
+    let { name, description, release, rating, genres, platforms } = req.body;
+    let genreDt = genres.map(gen => {
+        return Genre.findOrCreate({
+            where: {
+                name: gen
+            }
+        })
+    });
+
+    let allGenres = await Promise.all(genreDt);
+    let videogame = await Videogame.create({
         name,
         description,
         release,
-        rating,
-        genres,
+        rating: Number(rating),
         platforms,
     })
-    res.status(200).send('Game created successfully.')
-    
+    allGenres.forEach(gen => videogame.setGenres(gen[0]));
+    res.json(videogame);
+
 })
 
+module.exports = router
 
-module.exports = router;

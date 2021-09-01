@@ -1,0 +1,38 @@
+.fa-search {
+  padding: 0;
+  border: none;
+  background: none;
+  background-color: none;
+  color: white;
+}
+.fa-times-circle {
+  padding: 0;
+  border: none;
+  background: none;
+  background-color: none;
+  color: white;
+}
+
+.fa-search:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.fa-times-circle:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.search {
+  border: none;
+  background-color: rgb(68, 85, 116);
+  border-bottom: 1px solid white;
+  color: white;
+}
+.search::placeholder {
+  color: rgba(255, 255, 255, 0.733);
+  font-style: italic;
+}
+.search:focus {
+  outline: none;
+  border-bottom: 2px solid white;
+  color: white;
+}

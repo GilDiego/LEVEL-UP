@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { searchGames } from '../../Redux/Actions/actions';
+import { setLoading } from '../../Redux/Actions/buttonsActions'
 import './Searchbar.css'
 
 export default function Searchbar() {
@@ -14,6 +15,7 @@ export default function Searchbar() {
 
     function handleSubmit(e){
         e.preventDefault()
+        dispatch(setLoading(true))
         dispatch(searchGames(results))
     }
 
@@ -25,14 +27,17 @@ export default function Searchbar() {
         <>
             <form onSubmit={e => handleSubmit(e)}>
 
+                <button className="fas fa-search" type="submit"/>
+                &nbsp;
                 <input 
+                    className='search'
                     type="text" 
                     placeholder="Search for games..."
                     onChange={e => handleChange(e)}
                     value={results}
                 />
-                <input type="submit" value='Search'/>
-                <button onClick={e => clearSearch()}>Clear</button>
+                &nbsp;
+                <button className="fas fa-times-circle" onClick={e => clearSearch()} />
 
             </form>
         </>

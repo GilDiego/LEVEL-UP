@@ -3,10 +3,12 @@ import { useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux'
 import { searchId } from '../../Redux/Actions/actions';
 import './Details.css'
+import placeholder from '../../Media/placeholder.png'
+import loadingGif from '../../Media/loading3.gif'
+import {setLoading} from '../../Redux/Actions/buttonsActions.js'
 
 
 export default function Details() {
-    const [loading, setLoading] = useState(true)
     const [game, setGame] = useState({})
 
     // React location hook
@@ -16,6 +18,7 @@ export default function Details() {
     const dispatch = useDispatch()
     const gameObject = useSelector(state => state.gamesReducer.gameObject)
     const gamesDB = useSelector(state => state.gamesReducer.gamesDB)
+    const loading = useSelector(state => state.buttonsReducer.loading)
 
     useEffect(() => {
         if (typeof id !== 'string') dispatch(searchId(id))
@@ -33,25 +36,42 @@ export default function Details() {
     },[gameObject])
 
     useEffect(() => {
-        if (game.id === id || game.idDB === id) setLoading(false)
+        if (game.id === id || game.idDB === id) dispatch(setLoading(false))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[game])
 
+    function splitPlatforms(string){
+        string.replace()
+    }
     return (
         <>
             {
                 loading ? (
-                            <div>Loading</div>
+                            <div>
+                                <img src={loadingGif} alt="loadingGif" />
+                                <p>Loading...</p> 
+                            </div>
                         ) : (
-                        <>
-                            <h1>{game.name}</h1>
-                            <p>{game.image}</p>
-                            {game.genres.map(genre => <span>{genre} </span>)}
-                            <p>{game.release}</p>
-                            <p>{game.rating}</p>
-                            {game.platforms.map(platform => <span>{platform} </span>)}
-                            <p>{game.description}</p>
-                        </>
+                        <div className='details'>
+                                {game.image ? <img className='game-image' src={game.image} alt={game.name} /> : <img className='game-image' src={placeholder} alt={game.name}/>}
+                                <div className='details-right'>
+                                <h1>{game.name}</h1> 
+                                <p>
+                                <b>Genres:</b>  
+                                {game.genres.map(genre => <span>  {genre} </span>)}
+                                </p>
+                                <p><b>Release date:  </b>{game.release}</p>
+                                <p><b>Rating:  </b>{game.rating}</p>
+                                <p>
+                                <b>Platforms:  </b>
+                                {Array.isArray(game.plaforms) ? game.platforms.map(platform => <span>{platform}&nbsp;</span>) : <p>{game.platforms.toString().split(/(?=[A-Z])/)}</p>}
+                                </p>
+                                <div>
+                                <b>Description:</b> <br />
+                                <p className='desc'>{game.description.replace(/<\/?[^>]+(>|$)/g, "")}</p>
+                                </div>
+                                </div>
+                        </div>
                         )
             }
         </>
