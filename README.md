@@ -9,7 +9,7 @@ This application includes the following functionalities:
 - Sort alphabetically (Asc, Desc).
 - Sort by rating (Highest to Lowest, Lowest to Highest).
 - Access detailed information about selected videogame.
-- Add your own videogame to the Internal Database.
+- Add your own videogame to the Internal Database through the Create (controlled form) component.
 
 ## Technologies used:
 
