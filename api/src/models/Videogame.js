@@ -1,16 +1,12 @@
 const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
 
-
-module.exports = (sequelize) => {
-  // defino el modelo
+module.exports = (sequelize) =>
   sequelize.define('videogame', {
-    idDB:{
+    idDB: {
       type: DataTypes.VIRTUAL,
-      get(){
-        return `${this.id}DB`
-      }
+      get() {
+        return `${this.id}DB`;
+      },
     },
     name: {
       type: DataTypes.STRING,
@@ -21,17 +17,16 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    release:{
+    release: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    rating:{
+    rating: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    platforms:{
+    platforms: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
-};
