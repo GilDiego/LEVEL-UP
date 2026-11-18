@@ -1,48 +1,23 @@
-export const GET_GAMES = 'GET_GAMES'
-export const FETCH_DB = 'FETCH_DB'
-export const SEARCH_GAMES = 'SEARCH_GAMES'
-export const SEARCH_GAME_ID = 'SEARCH_GAME_ID'
+import { API_URL } from '../../config';
 
+export const GET_GAMES = 'GET_GAMES';
+export const FETCH_DB = 'FETCH_DB';
+export const SEARCH_GAMES = 'SEARCH_GAMES';
+export const SEARCH_GAME_ID = 'SEARCH_GAME_ID';
 
-export function getGames(page) {
-    return function (dispatch) {
-        return fetch(`http://localhost:3001/games?page=${page}`)
-            .then(data => data.json())
-            .then(json => {
-                dispatch({ type: "GET_GAMES", payload: json })
-            })
-    }
-}
+const load = (path, type) => (dispatch) =>
+  fetch(`${API_URL}${path}`)
+    .then((response) => response.json())
+    .then((payload) => dispatch({ type, payload }));
 
-export function fetchDB() {
-    return function (dispatch) {
-        return fetch('http://localhost:3001/gamesDB')
-            .then(data => data.json())
-            .then(json => {
-                dispatch({ type: "FETCH_DB", payload: json })
-            })
-    }
-}
+export const getGames = (page) => load(`/games?page=${page}`, GET_GAMES);
 
-export function searchGames(name) {
-    return function (dispatch) {
-        if (!name) {
-            return dispatch({ type: "SEARCH_GAMES", payload: [] })
-        }
-        else return fetch('http://localhost:3001/games?name=' + name)
-            .then(data => data.json())
-            .then(json => {
-                dispatch({ type: "SEARCH_GAMES", payload: json })
-            })
-    }
-}
+export const fetchDB = () => load('/gamesDB', FETCH_DB);
 
-export function searchId(id) {
-    return function (dispatch) {
-        return fetch('http://localhost:3001/games/' + id)
-            .then(data => data.json())
-            .then(json => {
-                dispatch({ type: "SEARCH_GAME_ID", payload: json })
-            })
-    }
-}
+export const searchGames = (name) => (dispatch) => {
+  if (!name) return dispatch({ type: SEARCH_GAMES, payload: [] });
+
+  return load(`/games?name=${encodeURIComponent(name)}`, SEARCH_GAMES)(dispatch);
+};
+
+export const searchId = (id) => load(`/games/${id}`, SEARCH_GAME_ID);

@@ -1,44 +1,21 @@
-export const SET_OPTIONS = 'SET_OPTIONS'
-export const SET_SOURCES = 'SET_SOURCES'
-export const SET_PAGE = 'SET_PAGE'
-export const SET_LOADING = 'SET_LOADING'
+export const SET_OPTIONS = 'SET_OPTIONS';
+export const SET_SOURCES = 'SET_SOURCES';
+export const SET_PAGE = 'SET_PAGE';
+export const SET_LOADING = 'SET_LOADING';
 
-export function setSources(API, DB) {
-    return function (dispatch) {
-        let obj = {}
-        return (
-            obj = { API, DB },
-            dispatch({ type: "SET_SOURCES", payload: obj }))
+export const setSources = (API, DB) => ({
+  type: SET_SOURCES,
+  payload: { API, DB },
+});
 
-    }
-}
-export function setOptionsSelected(rating, order) {
-    return function (dispatch) {
-        let obj = {}
-        return (
-            obj = {
-                rating: rating,
-                order: order
-            },
-            dispatch({ type: "SET_OPTIONS", payload: obj }))
+export const setOptionsSelected = (rating, order) => ({
+  type: SET_OPTIONS,
+  payload: { rating, order },
+});
 
-    }
-}
-export function setPageSelected(number) {
-    return function (dispatch) {
-        let page;
-        return (
-            page = Number(number),
-            dispatch({ type: "SET_PAGE", payload: page }))
+export const setPageSelected = (number) => ({
+  type: SET_PAGE,
+  payload: Number(number),
+});
 
-    }
-}
-export function setLoading(value) {
-    return function (dispatch) {
-        let loading = true;
-        return (
-            loading = value,
-            dispatch({ type: "SET_LOADING", payload: loading }))
-
-    }
-}
+export const setLoading = (value) => ({ type: SET_LOADING, payload: value });
