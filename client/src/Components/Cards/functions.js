@@ -1,42 +1,23 @@
-
-export function filterAPI(array, srcs, gamesRedux) {
-    if (srcs.API === false) {
-        return array.filter(dog => !gamesRedux.includes(dog))
-    }
-    else return array
+export function filterAPI(games, sources, apiGames) {
+  if (sources.API === false) return games.filter((game) => !apiGames.includes(game));
+  return games;
 }
 
-export function filterDB(array, srcs, gamesDB) {
-    if (srcs.DB === false) {
-        return array.filter(dog => !gamesDB.includes(dog))
-    }
-    else return array
+export function filterDB(games, sources, storedGames) {
+  if (sources.DB === false) return games.filter((game) => !storedGames.includes(game));
+  return games;
 }
 
-export function filterAlphabetically(array, options) {
-    if (options.order === 'asc') {
-        let asc = [...array]
-        asc.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-        return asc;
-    }
-    else if (options.order === 'desc') {
-        let desc = [...array]
-        desc.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()))
-        return desc;
-    }
-    else return array
+export function filterAlphabetically(games, options) {
+  const byName = (a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+
+  if (options.order === 'asc') return [...games].sort(byName);
+  if (options.order === 'desc') return [...games].sort((a, b) => byName(b, a));
+  return games;
 }
 
-export function filterByRating(array, options) {
-    if (options.rating === "Lowest-first") {
-        let lf = [...array]
-        lf.sort((a, b) => a.rating - b.rating);
-        return lf
-    }
-    else if (options.rating === "Highest-first") {
-        let hf = [...array]
-        hf.sort((a, b) => b.rating - a.rating);
-        return hf
-    }
-    else return array
+export function filterByRating(games, options) {
+  if (options.rating === 'Lowest-first') return [...games].sort((a, b) => a.rating - b.rating);
+  if (options.rating === 'Highest-first') return [...games].sort((a, b) => b.rating - a.rating);
+  return games;
 }

@@ -10,7 +10,7 @@
   background-image: url(../../Media/background2.png);
   background-repeat: no-repeat;
   background-size: cover;
-  position: absolute; /*Can also be `fixed`*/
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
